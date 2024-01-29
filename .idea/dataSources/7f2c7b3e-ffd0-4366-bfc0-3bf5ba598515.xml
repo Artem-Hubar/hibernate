@@ -1070,11 +1070,13 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </column>
     <foreign-key id="309" parent="298" name="fk_Order_Sellor">
       <ColNames>Sellor_idSellor</ColNames>
+      <OnUpdate>cascade</OnUpdate>
       <RefColNames>idSellor</RefColNames>
       <RefTableName>sellor</RefTableName>
     </foreign-key>
     <foreign-key id="310" parent="298" name="fk_Order_Consumer1">
       <ColNames>Consumer_idConsumer</ColNames>
+      <OnUpdate>cascade</OnUpdate>
       <RefColNames>idConsumer</RefColNames>
       <RefTableName>consumer</RefTableName>
     </foreign-key>

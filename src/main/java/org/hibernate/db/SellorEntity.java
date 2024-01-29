@@ -2,6 +2,7 @@ package org.hibernate.db;
 
 import jakarta.persistence.*;
 
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -9,16 +10,17 @@ import java.util.Objects;
 public class SellorEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "idSellor")
+    @Column(name = "idSellor", nullable = false)
     private int idSellor;
+    @Basic
+    @Column(name = "name", nullable = false, length = 45)
+    private String name;
+    @OneToMany(mappedBy = "sellorBySellorIdSellor")
+    private Collection<OrdersEntity> ordersByIdSellor;
 
     public SellorEntity(String name) {
         this.name = name;
     }
-
-    @Basic
-    @Column(name = "name")
-    private String name;
 
     public SellorEntity() {
     }
@@ -50,5 +52,13 @@ public class SellorEntity {
     @Override
     public int hashCode() {
         return Objects.hash(idSellor, name);
+    }
+
+    public Collection<OrdersEntity> getOrdersByIdSellor() {
+        return ordersByIdSellor;
+    }
+
+    public void setOrdersByIdSellor(Collection<OrdersEntity> ordersByIdSellor) {
+        this.ordersByIdSellor = ordersByIdSellor;
     }
 }

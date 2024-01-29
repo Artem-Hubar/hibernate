@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3c87646-6fb8-436c-bcf9-dca1bc2f30ad" name="Changes" comment="init commit">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f3c87646-6fb8-436c-bcf9-dca1bc2f30ad" name="Changes" comment="made reverse engineering to simpleshop schema">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hibernate/Event.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/hibernate/HibernateIllustrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hibernate/HibernateIllustrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hibernate.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hibernate.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hibernate/db/ConsumerEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hibernate/db/ConsumerEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hibernate/db/OrderEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/hibernate/db/SellorEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/hibernate/db/SellorEntity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,6 +82,7 @@
     </key>
     <key name="ImportMappingsDialog.RecentPackages">
       <recent name="org.hibernate.db" />
+      <recent name="" />
     </key>
   </component>
   <component name="RunManager" selected="Application.HibernateIllustrationTest">
@@ -130,7 +130,7 @@
       <option name="presentableId" value="Default" />
       <updated>1706203931544</updated>
       <workItem from="1706525425492" duration="48000" />
-      <workItem from="1706525500211" duration="4034000" />
+      <workItem from="1706525500211" duration="6412000" />
     </task>
     <task id="LOCAL-00001" summary="init commit">
       <created>1706205000853</created>
@@ -139,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1706205000853</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="made reverse engineering to simpleshop schema">
+      <created>1706530828792</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1706530828793</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,6 +165,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="init commit" />
+    <MESSAGE value="made reverse engineering to simpleshop schema" />
+    <option name="LAST_COMMIT_MESSAGE" value="made reverse engineering to simpleshop schema" />
   </component>
 </project>

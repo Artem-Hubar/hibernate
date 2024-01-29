@@ -28,7 +28,7 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.db.ConsumerEntity;
-import org.hibernate.db.OrderEntity;
+import org.hibernate.db.OrdersEntity;
 import org.hibernate.db.SellorEntity;
 
 import static java.lang.System.out;
@@ -47,7 +47,7 @@ public class HibernateIllustrationTest {
             sessionFactory =
                     new MetadataSources(registry)
                             .addAnnotatedClass(SellorEntity.class)
-                            .addAnnotatedClass(OrderEntity.class)
+                            .addAnnotatedClass(OrdersEntity.class)
                             .addAnnotatedClass(ConsumerEntity.class)
                             .buildMetadata()
                             .buildSessionFactory();
@@ -57,13 +57,15 @@ public class HibernateIllustrationTest {
 
         if (sessionFactory != null) {
             try {
+                SellorEntity sellorEntity = new SellorEntity("Max");
+                ConsumerEntity consumerEntity = new ConsumerEntity("Dan");
                 sessionFactory.inTransaction(session -> {
-                    session.persist(new SellorEntity("Max"));
-                    session.persist(new ConsumerEntity("Dan"));
+                    session.persist(sellorEntity);
+                    session.persist(consumerEntity);
 
                 });
                 sessionFactory.inTransaction(session ->
-                        session.persist(new OrderEntity("Books" , 3, 3, 3)
+                        session.persist(new OrdersEntity("Books" , 3,sellorEntity,consumerEntity)
                                                 ));
 
                 // now lets pull events from the database and list them
@@ -76,7 +78,7 @@ public class HibernateIllustrationTest {
                             .forEach(event -> out.println("ConsumerEntity name: " + event.getName() ));
                 });
                 sessionFactory.inTransaction(session -> {
-                    session.createSelectionQuery("from OrderEntity ", OrderEntity.class).getResultList()
+                    session.createSelectionQuery("from OrdersEntity ", OrdersEntity.class).getResultList()
                             .forEach(event -> out.println(event.getIdOrder() + " OrderEntity name: " + event.getTitle() + " amount: " + event.getAmount()));
                 });
             } finally {
