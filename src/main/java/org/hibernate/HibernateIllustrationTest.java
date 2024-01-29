@@ -27,6 +27,9 @@ package org.hibernate;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.db.ConsumerEntity;
+import org.hibernate.db.OrderEntity;
+import org.hibernate.db.SellorEntity;
 
 import static java.lang.System.out;
 import static java.time.LocalDateTime.now;
@@ -43,7 +46,9 @@ public class HibernateIllustrationTest {
         try {
             sessionFactory =
                     new MetadataSources(registry)
-                            .addAnnotatedClass(Event.class)
+                            .addAnnotatedClass(SellorEntity.class)
+                            .addAnnotatedClass(OrderEntity.class)
+                            .addAnnotatedClass(ConsumerEntity.class)
                             .buildMetadata()
                             .buildSessionFactory();
         } catch (Exception e) {
@@ -53,14 +58,26 @@ public class HibernateIllustrationTest {
         if (sessionFactory != null) {
             try {
                 sessionFactory.inTransaction(session -> {
-                    session.persist(new Event("Our very first event!", now()));
-                    session.persist(new Event("A follow up event", now()));
+                    session.persist(new SellorEntity("Max"));
+                    session.persist(new ConsumerEntity("Dan"));
+
                 });
+                sessionFactory.inTransaction(session ->
+                        session.persist(new OrderEntity("Books" , 3, 3, 3)
+                                                ));
 
                 // now lets pull events from the database and list them
                 sessionFactory.inTransaction(session -> {
-                    session.createSelectionQuery("from Event", Event.class).getResultList()
-                            .forEach(event -> out.println("Event (" + event.getDate() + ") : " + event.getTitle()));
+                    session.createSelectionQuery("from SellorEntity ", SellorEntity.class).getResultList()
+                            .forEach(event -> out.println("Sellor name: " + event.getName() ));
+                });
+                sessionFactory.inTransaction(session -> {
+                    session.createSelectionQuery("from ConsumerEntity ", ConsumerEntity.class).getResultList()
+                            .forEach(event -> out.println("ConsumerEntity name: " + event.getName() ));
+                });
+                sessionFactory.inTransaction(session -> {
+                    session.createSelectionQuery("from OrderEntity ", OrderEntity.class).getResultList()
+                            .forEach(event -> out.println(event.getIdOrder() + " OrderEntity name: " + event.getTitle() + " amount: " + event.getAmount()));
                 });
             } finally {
                 sessionFactory.close();
